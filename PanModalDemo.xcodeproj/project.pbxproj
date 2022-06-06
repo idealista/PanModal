@@ -23,7 +23,6 @@
 		0F2A2C682239C15D003BDB2F /* UIViewController+PanModalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C072A9220BA82A00124CE1 /* UIViewController+PanModalPresenter.swift */; };
 		0F2A2C692239C162003BDB2F /* DimmedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13906E216D9458007A3E64 /* DimmedView.swift */; };
 		0F2A2C6A2239C165003BDB2F /* PanContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94795C9C21F03368008045A0 /* PanContainerView.swift */; };
-		743CABB02225FC9F00634A5A /* UserGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743CABAF2225FC9F00634A5A /* UserGroupViewController.swift */; };
 		743CABB22225FD1100634A5A /* UserGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743CABB12225FD1100634A5A /* UserGroupHeaderView.swift */; };
 		743CABB42225FE7700634A5A /* UserGroupMemberPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743CABB32225FE7700634A5A /* UserGroupMemberPresentable.swift */; };
 		743CABB62225FEEE00634A5A /* UserGroupHeaderPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743CABB52225FEEE00634A5A /* UserGroupHeaderPresentable.swift */; };
@@ -44,10 +43,12 @@
 		944EBA2E227BB7F400C4C97B /* FullScreenNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944EBA2D227BB7F400C4C97B /* FullScreenNavController.swift */; };
 		94795C9B21F0335D008045A0 /* PanModalPresentationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94795C9A21F0335D008045A0 /* PanModalPresentationDelegate.swift */; };
 		94795C9D21F03368008045A0 /* PanContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94795C9C21F03368008045A0 /* PanContainerView.swift */; };
+		C928408B284DFE0000F83E1A /* UserGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743CABAF2225FC9F00634A5A /* UserGroupViewController.swift */; };
+		C928408C284DFE7A00F83E1A /* PanModalPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139068216D9458007A3E64 /* PanModalPresentable.swift */; };
+		C928408D284DFE7F00F83E1A /* PanModalBackgroundInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31828BD24ED570600E3867B /* PanModalBackgroundInteraction.swift */; };
 		DC13905E216D90D5007A3E64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC13905D216D90D5007A3E64 /* Assets.xcassets */; };
 		DC139061216D93ED007A3E64 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139060216D93ED007A3E64 /* SampleViewController.swift */; };
 		DC139070216D9458007A3E64 /* PanModalPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139066216D9458007A3E64 /* PanModalPresentationAnimator.swift */; };
-		DC139071216D9458007A3E64 /* PanModalPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139068216D9458007A3E64 /* PanModalPresentable.swift */; };
 		DC139072216D9458007A3E64 /* PanModalPresentable+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC139069216D9458007A3E64 /* PanModalPresentable+UIViewController.swift */; };
 		DC139073216D9458007A3E64 /* PanModalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13906A216D9458007A3E64 /* PanModalPresenter.swift */; };
 		DC139074216D9458007A3E64 /* PanModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC13906C216D9458007A3E64 /* PanModalPresentationController.swift */; };
@@ -575,15 +576,14 @@
 				DC3B2EBE222A58C9000C8A4A /* AlertView.swift in Sources */,
 				74C072A5220BA76D00124CE1 /* PanModalHeight.swift in Sources */,
 				94795C9B21F0335D008045A0 /* PanModalPresentationDelegate.swift in Sources */,
+				C928408C284DFE7A00F83E1A /* PanModalPresentable.swift in Sources */,
 				943904F32226484F00859537 /* UserGroupStackedViewController.swift in Sources */,
 				74C072AA220BA82A00124CE1 /* UIViewController+PanModalPresenter.swift in Sources */,
 				943904ED2226366700859537 /* AlertViewController.swift in Sources */,
 				743CABB22225FD1100634A5A /* UserGroupHeaderView.swift in Sources */,
 				DC139072216D9458007A3E64 /* PanModalPresentable+UIViewController.swift in Sources */,
 				DC139074216D9458007A3E64 /* PanModalPresentationController.swift in Sources */,
-				DC139071216D9458007A3E64 /* PanModalPresentable.swift in Sources */,
 				DC139061216D93ED007A3E64 /* SampleViewController.swift in Sources */,
-				743CABB02225FC9F00634A5A /* UserGroupViewController.swift in Sources */,
 				DCC0EE7C21917F2500208DBC /* PanModalPresentable+Defaults.swift in Sources */,
 				94795C9D21F03368008045A0 /* PanContainerView.swift in Sources */,
 				74C072A7220BA78800124CE1 /* PanModalPresentable+LayoutHelpers.swift in Sources */,
@@ -591,6 +591,8 @@
 				743CABD322265F2E00634A5A /* ProfileViewController.swift in Sources */,
 				DC139070216D9458007A3E64 /* PanModalPresentationAnimator.swift in Sources */,
 				944EBA2E227BB7F400C4C97B /* FullScreenNavController.swift in Sources */,
+				C928408B284DFE0000F83E1A /* UserGroupViewController.swift in Sources */,
+				C928408D284DFE7F00F83E1A /* PanModalBackgroundInteraction.swift in Sources */,
 				DCA741AE216D90410021F2F2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
