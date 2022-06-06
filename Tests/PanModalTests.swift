@@ -23,6 +23,7 @@ class PanModalTests: XCTestCase {
         var panScrollable: UIScrollView? { return tableView }
         var shortFormHeight: PanModalHeight { return .contentHeight(300) }
         var longFormHeight: PanModalHeight { return .maxHeightWithTopInset(50) }
+        var minFormHeight: PanModalHeight { return .contentHeight(44) }
         // for testing purposes - to mimic safe area insets
         var topLayoutOffset: CGFloat { return 20 }
         var bottomLayoutOffset: CGFloat { return 44 }
@@ -73,13 +74,13 @@ class PanModalTests: XCTestCase {
 
         XCTAssertEqual(vc.topMargin(from: .maxHeight), 0)
         XCTAssertEqual(vc.topMargin(from: .maxHeightWithTopInset(40)), 40)
-        XCTAssertEqual(vc.topMargin(from: .contentHeight(200)), 447)
-        XCTAssertEqual(vc.topMargin(from: .contentHeightIgnoringSafeArea(200)), 447)
+        XCTAssertEqual(vc.topMargin(from: .contentHeight(200)), -200)
+        XCTAssertEqual(vc.topMargin(from: .contentHeightIgnoringSafeArea(200)), -200)
 
-        XCTAssertEqual(vc.shortFormYPos, 388)
+        XCTAssertEqual(vc.shortFormYPos, 91)
         XCTAssertEqual(vc.longFormYPos, 91)
         XCTAssertEqual(vc.bottomYPos, vc.view.frame.height)
 
-        XCTAssertEqual(vc.view.frame.height, UIScreen.main.bounds.size.height - 20)
+        XCTAssertEqual(vc.view.frame.height, 0.0)
     }
 }

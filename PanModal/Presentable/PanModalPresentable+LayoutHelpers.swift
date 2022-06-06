@@ -47,6 +47,17 @@ extension PanModalPresentable where Self: UIViewController {
     }
 
     /**
+     Returns the min form Y position
+     */
+    var minFormYPos: CGFloat {
+
+        let minFormYPos = topMargin(from: minFormHeight) + topOffset
+
+        // minForm shouldn't exceed shortForm
+        return max(minFormYPos, shortFormYPos)
+    }
+    
+    /**
      Returns the short form Y position
 
      - Note: If voiceover is on, the `longFormYPos` is returned.

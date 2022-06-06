@@ -31,6 +31,7 @@ open class PanModalPresentationController: UIPresentationController {
     public enum PresentationState {
         case shortForm
         case longForm
+        case minForm
     }
 
     /**
@@ -83,6 +84,8 @@ open class PanModalPresentationController: UIPresentationController {
      The y value for the long form presentation state
      */
     private var longFormYPosition: CGFloat = 0
+    
+    private var minFormYPosition: CGFloat = 0
 
     /**
      Determine anchored Y postion based on the `anchorModalToLongForm` flag
@@ -276,6 +279,8 @@ public extension PanModalPresentationController {
             snap(toYPosition: shortFormYPosition)
         case .longForm:
             snap(toYPosition: longFormYPosition)
+        case .minForm:
+            snap(toYPosition: minFormYPosition)
         }
     }
 
@@ -439,6 +444,7 @@ private extension PanModalPresentationController {
 
         shortFormYPosition = layoutPresentable.shortFormYPos
         longFormYPosition = layoutPresentable.longFormYPos
+        minFormYPosition = layoutPresentable.minFormYPos
         anchorModalToLongForm = layoutPresentable.anchorModalToLongForm
         extendsPanScrolling = layoutPresentable.allowsExtendedPanScrolling
 
@@ -527,15 +533,18 @@ private extension PanModalPresentationController {
                  This allows the user to dismiss directly from long form
                  instead of going to the short form state first.
                  */
-                if velocity.y < 0 {
+                if velocity.y < 0 && nearest(to: presentedView.frame.minY, inValues: [shortFormYPosition, longFormYPosition]) == longFormYPosition {
                     transition(to: .longForm)
-
+                } else if velocity.y < 0 && nearest(to: presentedView.frame.minY, inValues: [shortFormYPosition, longFormYPosition]) == shortFormYPosition {
+                    transition(to: .shortForm)
                 } else if (nearest(to: presentedView.frame.minY, inValues: [longFormYPosition, containerView.bounds.height]) == longFormYPosition
                     && presentedView.frame.minY < shortFormYPosition) || presentable?.allowsDragToDismiss == false {
                     transition(to: .shortForm)
 
-                } else {
+                } else if presentable?.allowsToDismiss == true {
                     presentedViewController.dismiss(animated: true)
+                } else {
+                    transition(to: .minForm)
                 }
 
             } else {
@@ -544,7 +553,7 @@ private extension PanModalPresentationController {
                  The `containerView.bounds.height` is used to determine
                  how close the presented view is to the bottom of the screen
                  */
-                let position = nearest(to: presentedView.frame.minY, inValues: [containerView.bounds.height, shortFormYPosition, longFormYPosition])
+                let position = nearest(to: presentedView.frame.minY, inValues: [containerView.bounds.height, minFormYPosition, shortFormYPosition, longFormYPosition])
 
                 if position == longFormYPosition {
                     transition(to: .longForm)
@@ -552,8 +561,10 @@ private extension PanModalPresentationController {
                 } else if position == shortFormYPosition || presentable?.allowsDragToDismiss == false {
                     transition(to: .shortForm)
 
-                } else {
+                } else if presentable?.allowsToDismiss == true {
                     presentedViewController.dismiss(animated: true)
+                } else {
+                    transition(to: .minForm)
                 }
             }
         }

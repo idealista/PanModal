@@ -17,6 +17,14 @@ public extension PanModalPresentable where Self: UIViewController {
         return topLayoutOffset + 21.0
     }
 
+    var minFormHeight: PanModalHeight {
+        if #available(iOS 11.0, *) {
+            return .contentHeight(-view.safeAreaInsets.bottom)
+        } else {
+            return .contentHeight(0.0)
+        }
+    }
+    
     var shortFormHeight: PanModalHeight {
         return longFormHeight
     }
@@ -79,6 +87,10 @@ public extension PanModalPresentable where Self: UIViewController {
 
     var allowsTapToDismiss: Bool {
         return true
+    }
+    
+    var allowsToDismiss: Bool {
+        return false
     }
     
     var backgroundInteraction: PanModalBackgroundInteraction {

@@ -37,6 +37,16 @@ public protocol PanModalPresentable: AnyObject {
 
     /**
      The height of the pan modal container view
+     when in the minForm presentation state.
+
+     This value is capped to .max, if provided value exceeds the space available.
+
+     Default value is -view.safeAreaInsets.bottom
+     */
+    var minFormHeight: PanModalHeight { get }
+    
+    /**
+     The height of the pan modal container view
      when in the shortForm presentation state.
 
      This value is capped to .max, if provided value exceeds the space available.
@@ -44,7 +54,7 @@ public protocol PanModalPresentable: AnyObject {
      Default value is the longFormHeight.
      */
     var shortFormHeight: PanModalHeight { get }
-
+    
     /**
      The height of the pan modal container view
      when in the longForm presentation state.
@@ -134,6 +144,15 @@ public protocol PanModalPresentable: AnyObject {
      Default value is true.
      */
     var allowsDragToDismiss: Bool { get }
+    
+    /**
+     A flag to determine if can dismiss when swiping down on the presented view.
+
+     Return false to fallback to the min form state instead of dismissing.
+
+     Default value is false.
+     */
+    var allowsToDismiss: Bool { get }
 
     /**
      A flag to determine if dismissal should be initiated when tapping on the dimmed background view.
