@@ -23,4 +23,4 @@ jobs:
     - name: Get Sources
       uses: actions/checkout@v2
     - name: Run unit tests
-      run: xcodebuild test -scheme PanModal -project PanModalDemo.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 8,OS=$' | xcpretty
+      run: xcodebuild test -scheme PanModal -project PanModalDemo.xcodeproj -destination "platform=iOS Simulator,OS=latest,name=iPhone 8" | xcpretty
