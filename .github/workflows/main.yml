@@ -7,28 +7,20 @@ on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   pull_request:
     branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  macos:
+  run_tests:
+    runs-on: macos-12
     strategy:
-      fail-fast: false
       matrix:
-        macos:
-          - 12
-        xcode:
-          - latest-stable
-    runs-on: macos-${{ matrix.macos }}
+        include:
+          - xcode: "13.4"
+            ios: "15.5"
+    name: test iOS (${{ matrix.ios }})
     steps:
-      - name: Select Xcode version
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build and Test
-        run:
-          xcodebuild -scheme PanModal -sdk macosx clean build test -destination "platform=iPhone 11"
+    - uses: actions/checkout@v1
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_$.app && /usr/bin/xcodebuild -version
+    - name: Run unit tests
+      run: xcodebuild test -scheme PanModal -project PanModalDemo.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 8,OS=$' | xcpretty && exit ${PIPESTATUS[0]}
