@@ -544,6 +544,7 @@ private extension PanModalPresentationController {
                 } else if presentable?.allowsToDismiss == true {
                     presentedViewController.dismiss(animated: true)
                 } else {
+                    presentable?.willPanToMinState()
                     transition(to: .minForm)
                 }
 
@@ -564,6 +565,7 @@ private extension PanModalPresentationController {
                 } else if presentable?.allowsToDismiss == true {
                     presentedViewController.dismiss(animated: true)
                 } else {
+                    presentable?.willPanToMinState()
                     transition(to: .minForm)
                 }
             }
