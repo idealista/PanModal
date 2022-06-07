@@ -20,8 +20,7 @@ jobs:
             ios: "15.5"
     name: test iOS (${{ matrix.ios }})
     steps:
-    - uses: actions/checkout@v1
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_$.app && /usr/bin/xcodebuild -version
+    - name: Get Sources
+      uses: actions/checkout@v2
     - name: Run unit tests
-      run: xcodebuild test -scheme PanModal -project PanModalDemo.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 8,OS=$' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme PanModal -project PanModalDemo.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 8,OS=$' | xcpretty
