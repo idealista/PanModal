@@ -132,6 +132,8 @@ public extension PanModalPresentable where Self: UIViewController {
     func willTransition(to state: PanModalPresentationController.PresentationState) {
 
     }
+    
+    func willPanToMinState() {}
 
     func panModalWillDismiss() {
 

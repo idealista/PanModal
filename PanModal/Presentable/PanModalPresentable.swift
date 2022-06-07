@@ -247,6 +247,13 @@ public protocol PanModalPresentable: AnyObject {
      Default value is an empty implementation.
      */
     func willTransition(to state: PanModalPresentationController.PresentationState)
+    
+    /**
+     Notifies the delegate that the pan modal is about to Pan to the min state.
+
+     Default value is an empty implementation.
+     */
+    func willPanToMinState()
 
     /**
      Notifies the delegate that the pan modal is about to be dismissed.
