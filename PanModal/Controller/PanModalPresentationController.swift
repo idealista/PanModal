@@ -218,6 +218,9 @@ open class PanModalPresentationController: UIPresentationController {
     }
 
     override public func dismissalTransitionWillBegin() {
+        scrollObserver?.invalidate()
+        scrollObserver = nil
+
         presentable?.panModalWillDismiss()
 
         guard let coordinator = presentedViewController.transitionCoordinator else {
@@ -788,6 +791,7 @@ private extension PanModalPresentationController {
      Halts the scroll of a given scroll view & anchors it at the `scrollViewYOffset`
      */
     func haltScrolling(_ scrollView: UIScrollView) {
+        guard scrollView.window != nil else { return }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: false)
         scrollView.showsVerticalScrollIndicator = false
     }
@@ -797,6 +801,7 @@ private extension PanModalPresentationController {
      This helps halt scrolling when we want to hold the scroll view in place.
      */
     func trackScrolling(_ scrollView: UIScrollView) {
+        guard scrollView.window != nil else { return }
         scrollViewYOffset = max(scrollView.contentOffset.y, 0)
         scrollView.showsVerticalScrollIndicator = true
     }
@@ -812,6 +817,8 @@ private extension PanModalPresentationController {
      So, for example, a UITableViewController.
      */
     func handleScrollViewTopBounce(scrollView: UIScrollView, change: NSKeyValueObservedChange<CGPoint>) {
+
+        guard scrollView.window != nil else { return }
 
         guard let oldYValue = change.oldValue?.y, scrollView.isDecelerating
             else { return }
